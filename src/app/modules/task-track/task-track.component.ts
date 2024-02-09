@@ -21,9 +21,13 @@ export class TaskTrackComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.store.dispatch(TaskActions.loadTasks());
+    this.loadTasks();
     this.tasks$.subscribe((tasks)=>{
       console.log(tasks);
     })
+  }
+
+  loadTasks(): void {
+    this.store.dispatch(TaskActions.loadTasks());
   }
 }

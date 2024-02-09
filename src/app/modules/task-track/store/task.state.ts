@@ -1,10 +1,11 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { Task } from "app/shared/API-proxy/models/task";
 
 export interface TaskState {
   tasks: Task[];
   currentTask: Task | null;
   loading: boolean;
-  error: any;
+  error: HttpErrorResponse | null;
 }
 
 export const initialState: TaskState = {

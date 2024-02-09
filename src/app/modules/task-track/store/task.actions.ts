@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
 import { Task } from 'app/shared/API-proxy/models/task';
 
@@ -10,5 +11,5 @@ export const loadTasksSuccess = createAction(
 
 export const loadTasksFailure = createAction(
   '[Task] Load Tasks Failure',
-  props<{ error: any }>()
+  props<{ error: HttpErrorResponse }>()
 );
