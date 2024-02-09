@@ -20,7 +20,7 @@ export class TaskTrackService {
     );
   }
 
-  getTask(id: string): Observable<Task> {
+  getTaskDetails(id: string): Observable<Task> {
     return this.taskService.getTask(id).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error(`Error fetching task with id ${id}`, error.message);
