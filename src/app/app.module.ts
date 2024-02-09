@@ -15,6 +15,7 @@ import { appReducers } from './store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from './environments/environment';
 import { TaskEffects } from './modules/task-track/store/task.effects';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -29,9 +30,10 @@ import { TaskEffects } from './modules/task-track/store/task.effects';
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([TaskEffects]),
     StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      logOnly: environment.production, // Restrict extension to log-only mode
+      maxAge: 25,
+      logOnly: environment.production,
     }),
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
