@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryTaskDBService } from 'app/mockAPI/inMemoryTaskDB.service';
 
 import { AppComponent } from './app.component';
 
@@ -17,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
     HttpClientModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryTaskDBService, { delay: 500 }),
   ],
   providers: [],
   bootstrap: [AppComponent]
