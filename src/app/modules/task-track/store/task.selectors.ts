@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { TaskState } from './task.state';
-import { Task } from 'app/shared/API-proxy/models/task';
+import { Task, TaskState as DataTaskState} from 'app/shared/API-proxy/models/task';
 import { HttpErrorResponse } from '@angular/common/http';
 
 export const taskFeatureKey = 'taskState';
@@ -24,4 +24,27 @@ export const selectLoading = createSelector(
 export const selectError = createSelector(
   selectTaskFeature,
   (state: TaskState) => state.error as HttpErrorResponse
+);
+
+export const selectTotalEstimatedHoursPlanned = createSelector(
+  selectTaskFeature,
+  (state: TaskState) => state.tasks
+    .filter(task => task.state === DataTaskState.Planned)
+    .reduce((total, task) => total + task.estimate, 0)
+);
+
+// Selector for "In Progress" tasks
+export const selectTotalEstimatedHoursInProgress = createSelector(
+  selectTaskFeature,
+  (state: TaskState) => state.tasks
+    .filter(task => task.state === DataTaskState.InProgress)
+    .reduce((total, task) => total + task.estimate, 0)
+);
+
+// Selector for "Completed" tasks
+export const selectTotalEstimatedHoursCompleted = createSelector(
+  selectTaskFeature,
+  (state: TaskState) => state.tasks
+    .filter(task => task.state === DataTaskState.Completed)
+    .reduce((total, task) => total + task.estimate, 0)
 );

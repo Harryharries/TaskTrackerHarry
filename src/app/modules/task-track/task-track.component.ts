@@ -16,6 +16,9 @@ import { Store } from '@ngrx/store';
 export class TaskTrackComponent implements OnInit {
   tasks$: Observable<Task[]> = this.store.select(TaskSelectors.selectTasks).pipe(takeUntilDestroyed());
   task$: Observable<Task> = this.store.select(TaskSelectors.selectCurrentTask).pipe(takeUntilDestroyed());
+  totalPlanned$: Observable<number> = this.store.select(TaskSelectors.selectTotalEstimatedHoursPlanned).pipe(takeUntilDestroyed());
+  totalInProgress$: Observable<number> = this.store.select(TaskSelectors.selectTotalEstimatedHoursInProgress).pipe(takeUntilDestroyed());
+  totalCompleted$: Observable<number> = this.store.select(TaskSelectors.selectTotalEstimatedHoursCompleted).pipe(takeUntilDestroyed());
 
   constructor(
     private store: Store
@@ -27,7 +30,11 @@ export class TaskTrackComponent implements OnInit {
       console.log(tasks);
     })
 
-    const testTask = { id: '1', name: 'Ta22 2', description: 'Task 1 Description', estimate: 2, state: TaskState.Planned }
+    this.totalPlanned$.subscribe((totalHour)=>{
+      console.log("totalPlanned: " + totalHour);
+    })
+
+    const testTask = { id: '4', name: 'Ta22 2', description: 'Task 1 Description', estimate: 2, state: TaskState.Planned }
     this.addTask(testTask)
     // this.store.dispatch(TaskActions.updateTask({task: testTask}));
     // this.store.dispatch(TaskActions.deleteTask({id: "1"}));
