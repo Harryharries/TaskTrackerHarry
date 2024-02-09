@@ -1,0 +1,15 @@
+<div class="container mt-4">
+  <div *ngFor="let task of tasks" class="card mb-2">
+    <div class="card-body">
+      <h5 class="card-title">{{ task.name }}</h5>
+      <p class="card-text">{{ task.description }}</p>
+      <span class="badge" [ngClass]="{
+            'bg-primary': task.state === 'Planned',
+            'bg-warning text-dark': task.state === 'In Progress',
+            'bg-success': task.state === 'Completed'
+          }">
+        {{ task.state }}
+      </span>
+    </div>
+  </div>
+</div>

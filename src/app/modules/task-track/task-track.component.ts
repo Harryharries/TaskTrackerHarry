@@ -1,24 +1,27 @@
-import { Component, OnInit} from '@angular/core';
-import { Task, TaskState } from 'app/shared/API-proxy/models/task';
-import { Observable} from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import { Task } from 'app/shared/API-proxy/models/task';
+import { Observable, startWith } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import * as TaskActions from './store/task.actions';
 import * as TaskSelectors from './store/task.selectors';
 import { Store } from '@ngrx/store';
+import { CommonModule } from '@angular/common';
+import { TaskPageComponent } from "./components/task-page/task-page.component";
 
 @Component({
-  selector: 'app-task-track',
-  standalone: true,
-  imports: [],
-  templateUrl: './task-track.component.html',
-  styleUrl: './task-track.component.scss'
+    selector: 'app-task-track',
+    standalone: true,
+    templateUrl: './task-track.component.html',
+    styleUrl: './task-track.component.scss',
+    imports: [CommonModule, TaskPageComponent],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskTrackComponent implements OnInit {
-  tasks$: Observable<Task[]> = this.store.select(TaskSelectors.selectTasks).pipe(takeUntilDestroyed());
+  tasks$: Observable<Task[]> = this.store.select(TaskSelectors.selectTasks).pipe(startWith([]), takeUntilDestroyed());
   task$: Observable<Task> = this.store.select(TaskSelectors.selectCurrentTask).pipe(takeUntilDestroyed());
-  totalPlanned$: Observable<number> = this.store.select(TaskSelectors.selectTotalEstimatedHoursPlanned).pipe(takeUntilDestroyed());
-  totalInProgress$: Observable<number> = this.store.select(TaskSelectors.selectTotalEstimatedHoursInProgress).pipe(takeUntilDestroyed());
-  totalCompleted$: Observable<number> = this.store.select(TaskSelectors.selectTotalEstimatedHoursCompleted).pipe(takeUntilDestroyed());
+  totalPlanned$: Observable<number> = this.store.select(TaskSelectors.selectTotalEstimatedHoursPlanned).pipe(startWith(0), takeUntilDestroyed());
+  totalInProgress$: Observable<number> = this.store.select(TaskSelectors.selectTotalEstimatedHoursInProgress).pipe(startWith(0), takeUntilDestroyed());
+  totalCompleted$: Observable<number> = this.store.select(TaskSelectors.selectTotalEstimatedHoursCompleted).pipe(startWith(0), takeUntilDestroyed());
 
   constructor(
     private store: Store
@@ -33,11 +36,6 @@ export class TaskTrackComponent implements OnInit {
     this.totalPlanned$.subscribe((totalHour)=>{
       console.log("totalPlanned: " + totalHour);
     })
-
-    const testTask = { id: '4', name: 'Ta22 2', description: 'Task 1 Description', estimate: 2, state: TaskState.Planned }
-    this.addTask(testTask)
-    // this.store.dispatch(TaskActions.updateTask({task: testTask}));
-    // this.store.dispatch(TaskActions.deleteTask({id: "1"}));
   }
 
   loadTasks(): void {
@@ -58,5 +56,9 @@ export class TaskTrackComponent implements OnInit {
 
   deleteTask(id: string): void {
     this.store.dispatch(TaskActions.deleteTask({ id }));
+  }
+
+  openCreateDialog(): void {
+
   }
 }

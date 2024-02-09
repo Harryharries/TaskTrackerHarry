@@ -1,0 +1,47 @@
+<div class="d-flex justify-content-between">
+    <div class="d-flex gap-3 my-3 flex-wrap">
+      <div class="col text-center">
+        <div class="hour-badge p-2 border bg-light rounded">
+          <div class="text-muted h6 text-nowrap">Planned Hours</div>
+          <div class="fw-bold mb-0 h5">{{ totalPlanned }}</div>
+        </div>
+      </div>
+      <div class="col text-center">
+        <div class="hour-badge p-2 border border-info rounded bg-white">
+          <div class="text-info h6 text-nowrap">InProgress Hours</div>
+          <div class="fw-bold mb-0 text-info h5">{{ totalInProgress }}</div>
+        </div>
+      </div>
+      <div class="col text-center">
+        <div class="hour-badge p-2 border border-success rounded bg-white">
+          <div class="text-success h6 text-nowrap">Completed Hours</div>
+          <div class="fw-bold mb-0 text-success h5">{{ totalCompleted }}</div>
+        </div>
+      </div>
+    </div>
+    <button
+      type="button"
+      class="btn btn-primary my-4 fw-medium py-1 px-3"
+      (click)="createNewTask()"
+    >
+     New Task
+    </button>
+</div>
+
+
+<ul class="nav nav-tabs" id="taskTabs" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="task-list-tab" data-bs-toggle="tab" data-bs-target="#taskList" type="button" role="tab" aria-controls="taskList" aria-selected="true">Task List</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="task-dashboard-tab" data-bs-toggle="tab" data-bs-target="#taskDashboard" type="button" role="tab" aria-controls="taskDashboard" aria-selected="false">Task Dashboard</button>
+  </li>
+</ul>
+<div class="tab-content" id="taskTabsContent">
+  <div class="tab-pane fade show active" id="taskList" role="tabpanel" aria-labelledby="task-list-tab">
+    <app-task-list [tasks]="tasks"></app-task-list>
+  </div>
+  <div class="tab-pane fade" id="taskDashboard" role="tabpanel" aria-labelledby="task-dashboard-tab">
+    <app-task-dashboard [tasks]="tasks"></app-task-dashboard>
+  </div>
+</div>

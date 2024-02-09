@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-between align-items-center py-3 px-5 border-bottom pointer">
+  <div class="border-start ps-4 w-100  task-description"
+    [class]="{
+      'border-light-subtle': task.state === 'Planned',
+      'border-primary-subtle': task.state === 'In Progress',
+      'border-success-subtle': task.state === 'Completed'
+      }"
+    >
+    <div class="fw-bold text-truncate w-100">{{task.name}}</div>
+    <div class="text-secondary text-truncate w-100">
+      {{task.description}} {{task.description}}{{task.description}}
+    </div>
+  </div>
+
+  <div class="d-flex align-items-center">
+    @if (task.state === 'Planned') {
+    <div class="bg-light border border-2 border-secondary text-secondary fw-medium py-1 px-2 rounded-pill text-nowrap">
+      {{task.state}}
+    </div>
+    }
+    @if (task.state === 'In Progress') {
+    <div class="bg-info text-white fw-medium py-1 px-2 rounded-pill text-nowrap">
+      {{task.state}}
+    </div>
+    }
+    @if (task.state === 'Completed') {
+    <div class="bg-success text-white fw-medium py-1 px-2 rounded-pill text-nowrap">
+      {{task.state}}
+    </div>
+    }
+  </div>
+
+  <div class="me-3">
+    <div class="bg-light text-muted fw-medium py-1 px-3 rounded-pill text-nowrap">
+      {{ task.estimate }} h
+    </div>
+  </div>
+</div>

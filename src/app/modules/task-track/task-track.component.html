@@ -1,1 +1,8 @@
-<p>task-track works!</p>
+<app-task-page
+  [tasks]="tasks$ | async"
+  [totalPlanned]="totalPlanned$ | async"
+  [totalInProgress]="totalInProgress$ | async"
+  [totalCompleted]="totalCompleted$ | async"
+  (openCreateDialog)="openCreateDialog()"
+>
+</app-task-page>

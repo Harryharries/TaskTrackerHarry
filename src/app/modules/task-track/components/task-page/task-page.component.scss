@@ -1,0 +1,15 @@
+.card {
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+
+  .card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .badge {
+      padding: 0.5em 1em;
+      font-size: 0.875em;
+    }
+  }
+}

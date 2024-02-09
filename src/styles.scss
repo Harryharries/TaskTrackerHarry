@@ -1,2 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bootstrap/dist/css/bootstrap.css";
+
+.pointer {
+  cursor: pointer !important;
+}
+
+.test {
+  border-style: solid;
+  border-color: red;
+  border-width: 1px;
+}
+
+.ellipsis-text{
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.hour-badge{
+  width: 180px;
+  width: 180px;
+}
