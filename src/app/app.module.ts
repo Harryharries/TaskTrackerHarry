@@ -17,7 +17,8 @@ import { environment } from './environments/environment';
 import { TaskEffects } from './modules/task-track/store/task.effects';
 import { CoreModule } from './core/core.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
+import { ToastrModule, provideToastr } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent
@@ -30,14 +31,18 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     HttpClientInMemoryWebApiModule.forRoot(InMemoryTaskDBService, { delay: 500 }),
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([TaskEffects]),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
-    CoreModule
+    CoreModule,
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideAnimations(),
+    provideToastr()
   ],
   bootstrap: [AppComponent]
 })

@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, concatMap, map, mergeMap, switchMap } from 'rxjs/operators';
+import { catchError, concatMap, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import * as TaskActions from './task.actions';
 import { TaskTrackService } from 'app/modules/task-track/services/task-track.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Task } from 'app/shared/API-proxy/models/task';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Injectable()
 export class TaskEffects {
@@ -34,6 +36,7 @@ export class TaskEffects {
     ofType(TaskActions.addTask),
     concatMap(({ task }: { task: Task }) =>
       this.taskTrackService.addTask(task).pipe(
+        tap(()=> this.toastr.success('Task successfully created!', 'Success')),
         map((newTask: Task) => TaskActions.addTaskSuccess({ task: newTask })),
         catchError((error: HttpErrorResponse) => of(TaskActions.addTaskFailure({ error })))
       )
@@ -44,6 +47,7 @@ export class TaskEffects {
     ofType(TaskActions.updateTask),
     mergeMap(({ task }: { task: Task }) =>
       this.taskTrackService.updateTask(task).pipe(
+        tap(()=> this.toastr.success('Task successfully updated!', 'Success')),
         map(() => TaskActions.updateTaskSuccess({ task })),
         catchError((error: HttpErrorResponse) => of(TaskActions.updateTaskFailure({ error })))
       )
@@ -54,6 +58,7 @@ export class TaskEffects {
     ofType(TaskActions.deleteTask),
     mergeMap(({ id }: { id: string }) =>
       this.taskTrackService.deleteTask(id).pipe(
+        tap(()=> this.toastr.success('Task successfully deleted!', 'Success')),
         map(() => TaskActions.deleteTaskSuccess({ id })),
         catchError((error: HttpErrorResponse) => of(TaskActions.deleteTaskFailure({ error })))
       )
@@ -82,6 +87,7 @@ export class TaskEffects {
 
   constructor(
     private actions$: Actions,
-    private taskTrackService: TaskTrackService
+    private taskTrackService: TaskTrackService,
+    private toastr: ToastrService,
   ) {}
 }
