@@ -36,6 +36,10 @@ export const taskReducer = createReducer(
     loading: false,
     error
   })),
+  on(TaskActions.resetDialog, state => ({
+    ...state,
+    dialogTaskSuccess: false
+  })),
   // Handle add task
   on(TaskActions.addTask, state => ({
     ...state,
@@ -44,7 +48,8 @@ export const taskReducer = createReducer(
   })),
   on(TaskActions.addTaskSuccess, (state, { task }) => ({
     ...state,
-    loading: false
+    loading: false,
+    dialogTaskSuccess: true
   })),
   on(TaskActions.addTaskFailure, (state, { error }) => ({
     ...state,

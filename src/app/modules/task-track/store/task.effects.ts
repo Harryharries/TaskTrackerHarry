@@ -71,6 +71,15 @@ export class TaskEffects {
       );
     });
 
+    refetchDialog$ = createEffect(() => {
+      return this.actions$.pipe(
+        ofType(
+          TaskActions.addTaskSuccess
+        ),
+        switchMap(() => of(TaskActions.resetDialog()))
+      );
+    });
+
   constructor(
     private actions$: Actions,
     private taskTrackService: TaskTrackService

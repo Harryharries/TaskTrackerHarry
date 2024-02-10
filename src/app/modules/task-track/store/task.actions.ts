@@ -73,3 +73,7 @@ export const deleteTaskFailure = createAction(
   '[Task] Delete Task Failure',
   props<{ error: HttpErrorResponse }>()
 );
+
+export const resetDialog = createAction(
+  '[Task] Delete Task Failure'
+);

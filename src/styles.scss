@@ -20,3 +20,16 @@
   width: 180px;
   width: 180px;
 }
+
+.dialog-container {
+  transition: all 0.2s ease-in-out 0s !important;
+
+  mat-dialog-container {
+    padding: 1px !important;
+    margin: 0 auto;
+  }
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

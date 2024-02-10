@@ -1,0 +1,27 @@
+.task-form {
+  &-description {
+    width: 100%;
+    textarea {
+      height: 100px;
+    }
+  }
+
+  &-time {
+    width: 200px;
+    margin-right: 0px;
+  }
+
+  &-name {
+    width: 200px;
+    margin-right: 0px;
+  }
+}
+
+
+.form-container {
+  height: 100%;
+}
+
+.create-button {
+  width: 85px;
+}

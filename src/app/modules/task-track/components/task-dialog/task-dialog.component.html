@@ -1,0 +1,43 @@
+<div class="p-4 d-flex flex-column justify-content-between form-container">
+  <div class="d-flex justify-content-between mt-2 mb-3">
+    <div class="h3">Create New Task</div>
+  </div>
+
+  <form class="ms-2" [formGroup]="taskForm">
+    <div class="d-flex mb-3 gap-3">
+        <mat-form-field class="task-form-name" appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name">
+          @if (taskForm.controls['name'].invalid) {
+            <mat-error>Please enter a valid name.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field class="task-form-time" appearance="outline">
+          <mat-label>Estimate Time (hours)</mat-label>
+          <input matInput type="number" formControlName="estimate">
+          @if (taskForm.controls['estimate'].invalid) {
+            <mat-error>Please enter a valid estimate.</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="task-form-description" appearance="outline">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+      </div>
+
+  </form>
+  <div class="d-flex justify-content-between py-1">
+    <button type="button" class="btn btn-light" (click)="close()">Cancel</button>
+    <button type="button" class="btn btn-primary create-button" [disabled]="!taskForm.valid || (loading$ | async)" (click)="create()">
+      <ng-container *ngIf="loading$ | async; else createLabel">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span class="visually-hidden">Loading...</span>
+      </ng-container>
+      <ng-template #createLabel>Create</ng-template>
+    </button>
+  </div>
+</div>

@@ -21,6 +21,11 @@ export const selectLoading = createSelector(
   (state: TaskState) => state.loading as boolean
 );
 
+export const selectDialogTaskSuccess = createSelector(
+  selectTaskFeature,
+  (state: TaskState) => state.dialogTaskSuccess as boolean
+);
+
 export const selectError = createSelector(
   selectTaskFeature,
   (state: TaskState) => state.error as HttpErrorResponse

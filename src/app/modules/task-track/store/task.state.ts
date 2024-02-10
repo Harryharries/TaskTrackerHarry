@@ -6,11 +6,13 @@ export interface TaskState {
   currentTask: Task | null;
   loading: boolean;
   error: HttpErrorResponse | null;
+  dialogTaskSuccess: boolean;
 }
 
 export const initialState: TaskState = {
   tasks: [],
   currentTask: null,
   loading: false,
-  error: null
+  error: null,
+  dialogTaskSuccess: false
 };
