@@ -11,6 +11,7 @@ import { Task, TaskState } from 'app/shared/API-proxy/models/task';
 export class TaskCardComponent {
   @Input() task!: Task;
   @Output() stateUpdate = new EventEmitter<Task>();
+  @Output() deleteTask = new EventEmitter<Task>();
 
   emitStateUpdate(newState: TaskState): void {
     const updatedTask = {

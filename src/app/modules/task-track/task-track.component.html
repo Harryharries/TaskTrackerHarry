@@ -6,5 +6,6 @@
   [totalCompleted]="totalCompleted$ | async"
   (openCreateDialog)="openCreateDialog()"
   (emitStateUpdate)="updateTask($event)"
+  (emitDelete)="deleteTask($event.id)"
 >
 </app-task-page>

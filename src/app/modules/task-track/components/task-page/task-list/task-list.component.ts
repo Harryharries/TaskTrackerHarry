@@ -13,6 +13,7 @@ import { TaskCardComponent } from 'app/shared/components/task-card/task-card.com
 export class TaskListComponent {
   @Input() tasks: Task[] | null = [];
   @Output() emitStateUpdate: EventEmitter<Task> = new EventEmitter<Task>();
+  @Output() emitDelete: EventEmitter<Task> = new EventEmitter<Task>();
 
   currentFilter: TaskState | 'All' = 'All';
   TaskState = TaskState;
