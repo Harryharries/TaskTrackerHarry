@@ -1,15 +1,45 @@
-<div class="container mt-4">
-  <div *ngFor="let task of tasks" class="card mb-2">
-    <div class="card-body">
-      <h5 class="card-title">{{ task.name }}</h5>
-      <p class="card-text">{{ task.description }}</p>
-      <span class="badge" [ngClass]="{
-            'bg-primary': task.state === 'Planned',
-            'bg-warning text-dark': task.state === 'In Progress',
-            'bg-success': task.state === 'Completed'
-          }">
-        {{ task.state }}
-      </span>
+<div class="container mt-3">
+  <div class="row g-4">
+    <!-- Planned Column -->
+    <div class="col">
+      <div class="text-muted h6 ">Planned</div>
+      <div class="border border-muted p-3 jira-task-container rounded">
+        <div *ngFor="let task of getTasksByState(TaskState.Planned)" class="bg-light text-muted mb-3 p-2 border border-2 border-secondary rounded">
+          <app-task-card
+            [dashboard]="true"
+            [task]="task"
+          >
+          </app-task-card>
+        </div>
+      </div>
+    </div>
+
+    <!-- In Progress Column -->
+    <div class="col">
+      <div class="text-info h6">In Progress</div>
+      <div class="border border-info p-3 jira-task-container rounded">
+        <div *ngFor="let task of getTasksByState(TaskState.InProgress)" class="bg-light text-info mb-3 p-2 border border-2 border-info rounded">
+          <app-task-card
+            [dashboard]="true"
+            [task]="task"
+          >
+          </app-task-card>
+        </div>
+      </div>
+    </div>
+
+    <!-- Completed Column -->
+    <div class="col">
+      <div class="text-success h6">Completed</div>
+      <div class="border border-success p-3 jira-task-container rounded">
+        <div *ngFor="let task of getTasksByState(TaskState.Completed)" class="bg-light text-success mb-3 p-2 border border-2 border-success rounded">
+          <app-task-card
+            [dashboard]="true"
+            [task]="task"
+          >
+          </app-task-card>
+        </div>
+      </div>
     </div>
   </div>
 </div>

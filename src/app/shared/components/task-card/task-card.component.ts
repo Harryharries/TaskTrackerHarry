@@ -1,15 +1,16 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task, TaskState } from 'app/shared/API-proxy/models/task';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
 @Component({
   selector: 'app-task-card',
   standalone: true,
-  imports: [],
+  imports: [MatTooltipModule],
   templateUrl: './task-card.component.html',
   styleUrl: './task-card.component.scss'
 })
 export class TaskCardComponent {
   @Input() task!: Task;
+  @Input() dashboard: boolean = false;
   @Output() stateUpdate = new EventEmitter<Task>();
   @Output() deleteTask = new EventEmitter<Task>();
 

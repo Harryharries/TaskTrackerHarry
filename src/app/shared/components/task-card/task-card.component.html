@@ -1,4 +1,4 @@
-<div class="d-flex align-items-center py-3 px-5 border-bottom pointer">
+<div class="d-flex align-items-center py-3 px-5 border-bottom pointer"  [matTooltip]="task.description">
   <div class="border-start ps-4 w-100  task-description"
     [class]="{
       'border-light-subtle': task.state === 'Planned',
@@ -7,72 +7,78 @@
       }"
     >
     <div class="fw-bold text-truncate w-100">{{task.name}}</div>
-    <div class="text-secondary text-truncate w-100">
-      {{task.description}}
-    </div>
+    @if (!dashboard) {
+      <div class="text-secondary text-truncate w-100">
+        {{task.description}}
+      </div>
+    }
   </div>
   <div class="d-flex ms-auto">
-    <div class="d-flex align-items-center justify-content-between">
+    @if (!dashboard) {
+      <div class="d-flex align-items-center justify-content-between">
 
-      <div class="dropdown">
-        <div class="" type="button" id="stateDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-          @if (task.state === 'Planned') {
-          <div class="bg-light border border-2 border-secondary text-secondary fw-medium py-1 px-3 rounded-pill text-nowrap">
-            {{task.state}}
-          </div>
-          }
-          @if (task.state === 'In Progress') {
-          <div class="bg-info text-white fw-medium py-1 px-2 rounded-pill text-nowrap">
-            {{task.state}}
-          </div>
-          }
-          @if (task.state === 'Completed') {
-          <div class="bg-success text-white fw-medium py-1 px-2 rounded-pill text-nowrap">
-            {{task.state}}
-          </div>
-          }
-        </div>
-        <ul class="dropdown-menu" aria-labelledby="stateDropdown">
-          @for (state of availableStates; track $index) {
-            @if (state === 'Planned') {
-              <div
-                class="text-muted text-nowrap"
-                (click)="emitStateUpdate(state); $event.preventDefault()"
-              >
-                <span class="ms-4">{{state}}</span>
-              </div>
+        <div class="dropdown">
+          <div class="" type="button" id="stateDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            @if (task.state === 'Planned') {
+            <div class="bg-light border border-2 border-secondary text-secondary fw-medium py-1 px-3 rounded-pill text-nowrap">
+              {{task.state}}
+            </div>
             }
-            @if (state === 'In Progress') {
-              <div
-                class="text-info text-nowrap"
-                (click)="emitStateUpdate(state); $event.preventDefault()"
-              >
-                <span class="ms-4">{{state}}</span>
-              </div>
+            @if (task.state === 'In Progress') {
+            <div class="bg-info text-white fw-medium py-1 px-2 rounded-pill text-nowrap">
+              {{task.state}}
+            </div>
+            }
+            @if (task.state === 'Completed') {
+            <div class="bg-success text-white fw-medium py-1 px-2 rounded-pill text-nowrap">
+              {{task.state}}
+            </div>
+            }
+          </div>
+          <ul class="dropdown-menu" aria-labelledby="stateDropdown">
+            @for (state of availableStates; track $index) {
+              @if (state === 'Planned') {
+                <div
+                  class="text-muted text-nowrap"
+                  (click)="emitStateUpdate(state); $event.preventDefault()"
+                >
+                  <span class="ms-4">{{state}}</span>
+                </div>
               }
-            @if (state === 'Completed') {
-              <div
-                class="text-success text-nowrap"
-                (click)="emitStateUpdate(state); $event.preventDefault()"
-              >
-              <span class="ms-4">{{state}}</span>
-              </div>
+              @if (state === 'In Progress') {
+                <div
+                  class="text-info text-nowrap"
+                  (click)="emitStateUpdate(state); $event.preventDefault()"
+                >
+                  <span class="ms-4">{{state}}</span>
+                </div>
+                }
+              @if (state === 'Completed') {
+                <div
+                  class="text-success text-nowrap"
+                  (click)="emitStateUpdate(state); $event.preventDefault()"
+                >
+                <span class="ms-4">{{state}}</span>
+                </div>
+              }
             }
-          }
-        </ul>
+          </ul>
+        </div>
       </div>
-    </div>
-
+    }
     <div class="mx-5">
       <div class="bg-light text-muted fw-medium py-1 px-3 rounded-pill text-nowrap">
         {{ task.estimate }} h
       </div>
     </div>
-    <div class="text-danger" (click)="deleteTask.emit(task); $event.preventDefault()">
-      <span class="material-icons">
-        delete_outline
-        </span>
-    </div>
+    @if (!dashboard) {
+      <div class="text-danger" (click)="deleteTask.emit(task); $event.preventDefault()">
+        <span class="material-icons">
+          delete_outline
+          </span>
+      </div>
+    }
+
 
   </div>
 
