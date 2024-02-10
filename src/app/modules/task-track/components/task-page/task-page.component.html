@@ -44,7 +44,11 @@
   </ul>
   <div class="tab-content" id="taskTabsContent">
     <div class="tab-pane fade  show active" id="taskDashboard" role="tabpanel" aria-labelledby="task-dashboard-tab">
-      <app-task-dashboard [tasks]="tasks"></app-task-dashboard>
+      <app-task-dashboard
+       [tasks]="tasks"
+       (taskStateChange)="emitStateUpdate.emit($event)"
+       >
+      </app-task-dashboard>
     </div>
     <div class="tab-pane fade" id="taskList" role="tabpanel" aria-labelledby="task-list-tab">
       <app-task-list

@@ -36,7 +36,7 @@ export class TaskEffects {
     ofType(TaskActions.addTask),
     concatMap(({ task }: { task: Task }) =>
       this.taskTrackService.addTask(task).pipe(
-        tap(()=> this.toastr.success('Task successfully created!', 'Success')),
+        tap(()=> this.toastr.success(task.name + ' successfully created!', 'Success')),
         map((newTask: Task) => TaskActions.addTaskSuccess({ task: newTask })),
         catchError((error: HttpErrorResponse) => of(TaskActions.addTaskFailure({ error })))
       )
@@ -47,7 +47,7 @@ export class TaskEffects {
     ofType(TaskActions.updateTask),
     mergeMap(({ task }: { task: Task }) =>
       this.taskTrackService.updateTask(task).pipe(
-        tap(()=> this.toastr.success('Task successfully updated!', 'Success')),
+        tap(()=> this.toastr.success(task.name + ' successfully updated to '+ task.state, 'Success')),
         map(() => TaskActions.updateTaskSuccess({ task })),
         catchError((error: HttpErrorResponse) => of(TaskActions.updateTaskFailure({ error })))
       )
