@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task, TaskState } from 'app/shared/API-proxy/models/task';
 
 @Component({
@@ -10,4 +10,18 @@ import { Task, TaskState } from 'app/shared/API-proxy/models/task';
 })
 export class TaskCardComponent {
   @Input() task!: Task;
+  @Output() stateUpdate = new EventEmitter<Task>();
+
+  emitStateUpdate(newState: TaskState): void {
+    const updatedTask = {
+      ...this.task,
+      state: newState
+    }
+    this.stateUpdate.emit(updatedTask);
+  }
+
+  get availableStates(): TaskState[] {
+    const test = Object.values(TaskState)
+    return test.filter(state => state !== this.task.state);
+  }
 }

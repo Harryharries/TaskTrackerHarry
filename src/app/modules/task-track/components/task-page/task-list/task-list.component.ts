@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task, TaskState } from 'app/shared/API-proxy/models/task';
 import { TaskCardComponent } from 'app/shared/components/task-card/task-card.component';
 
@@ -12,6 +12,7 @@ import { TaskCardComponent } from 'app/shared/components/task-card/task-card.com
 })
 export class TaskListComponent {
   @Input() tasks: Task[] | null = [];
+  @Output() emitStateUpdate: EventEmitter<Task> = new EventEmitter<Task>();
 
   currentFilter: TaskState | 'All' = 'All';
   TaskState = TaskState;

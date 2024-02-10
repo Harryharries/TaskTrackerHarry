@@ -5,3 +5,13 @@
 .task-item {
   cursor: pointer;
 }
+
+::ng-deep .dropdown-menu {
+  :first-child{
+    margin-bottom: 5px;
+  }
+
+  :hover {
+    background-color: #ececec;
+  }
+}

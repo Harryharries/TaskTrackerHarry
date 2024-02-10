@@ -18,6 +18,7 @@ export class TaskPageComponent {
   @Input() totalInProgress: number | null = 0;
   @Input() totalCompleted: number | null = 0;
   @Output() openCreateDialog = new EventEmitter<void>();
+  @Output() emitStateUpdate: EventEmitter<Task> = new EventEmitter<Task>();
 
   createNewTask(): void {
     this.openCreateDialog.emit()

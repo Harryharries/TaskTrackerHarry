@@ -12,22 +12,55 @@
     </div>
   </div>
 
-  <div class="d-flex align-items-center">
-    @if (task.state === 'Planned') {
-    <div class="bg-light border border-2 border-secondary text-secondary fw-medium py-1 px-2 rounded-pill text-nowrap">
-      {{task.state}}
+  <div class="d-flex align-items-center justify-content-between">
+
+    <div class="dropdown">
+      <div class="" type="button" id="stateDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        @if (task.state === 'Planned') {
+        <div class="bg-light border border-2 border-secondary text-secondary fw-medium py-1 px-2 rounded-pill text-nowrap">
+          {{task.state}}
+        </div>
+        }
+        @if (task.state === 'In Progress') {
+        <div class="bg-info text-white fw-medium py-1 px-2 rounded-pill text-nowrap">
+          {{task.state}}
+        </div>
+        }
+        @if (task.state === 'Completed') {
+        <div class="bg-success text-white fw-medium py-1 px-2 rounded-pill text-nowrap">
+          {{task.state}}
+        </div>
+        }
+      </div>
+      <ul class="dropdown-menu" aria-labelledby="stateDropdown">
+        @for (state of availableStates; track $index) {
+          @if (state === 'Planned') {
+            <div
+              class="text-muted text-nowrap"
+              (click)="emitStateUpdate(state); $event.preventDefault()"
+            >
+              <span class="ms-4">{{state}}</span>
+            </div>
+          }
+          @if (state === 'In Progress') {
+            <div
+              class="text-info text-nowrap"
+              (click)="emitStateUpdate(state); $event.preventDefault()"
+            >
+              <span class="ms-4">{{state}}</span>
+            </div>
+            }
+          @if (state === 'Completed') {
+            <div
+              class="text-success text-nowrap"
+              (click)="emitStateUpdate(state); $event.preventDefault()"
+            >
+            <span class="ms-4">{{state}}</span>
+            </div>
+          }
+        }
+      </ul>
     </div>
-    }
-    @if (task.state === 'In Progress') {
-    <div class="bg-info text-white fw-medium py-1 px-2 rounded-pill text-nowrap">
-      {{task.state}}
-    </div>
-    }
-    @if (task.state === 'Completed') {
-    <div class="bg-success text-white fw-medium py-1 px-2 rounded-pill text-nowrap">
-      {{task.state}}
-    </div>
-    }
   </div>
 
   <div class="me-3">
