@@ -47,6 +47,7 @@
       <app-task-dashboard
        [tasks]="tasks"
        (taskStateChange)="emitStateUpdate.emit($event)"
+       (taskDelete)="emitDelete.emit($event)"
        >
       </app-task-dashboard>
     </div>

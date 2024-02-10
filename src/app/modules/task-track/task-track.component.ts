@@ -32,17 +32,6 @@ export class TaskTrackComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadTasks();
-    this.tasks$.subscribe((tasks)=>{
-      console.log(tasks);
-    })
-
-    this.totalPlanned$.subscribe((totalHour)=>{
-      console.log("totalPlanned: " + totalHour);
-    })
-
-    // this.addTask({
-    //   id: uuid(), name: 'Task 1', description: 'Task 1 Description', estimate: 2, state: TaskState.Planned,
-    // })
   }
 
   openCreateDialog(): void {

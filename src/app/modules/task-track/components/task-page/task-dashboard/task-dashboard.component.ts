@@ -14,6 +14,7 @@ import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 export class TaskDashboardComponent {
   @Input() tasks: Task[] | null = [];
   @Output() taskStateChange = new EventEmitter<Task>();
+  @Output() taskDelete = new EventEmitter<Task>();
   TaskState = TaskState;
 
   getTasksByState(state: TaskState): Task[] {
@@ -38,6 +39,12 @@ export class TaskDashboardComponent {
         state: newState
       };
       this.taskStateChange.emit(updatedTask);
+    }
+  }
+  deleteTask(event: CdkDragDrop<Task[]>): void {
+    if (event.previousContainer !== event.container) {
+      const task = event.previousContainer.data[event.previousIndex];
+      this.taskDelete.emit(task);
     }
   }
 }

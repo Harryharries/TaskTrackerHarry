@@ -1,5 +1,15 @@
-<div class="container mt-3">
-  <div class="row g-4" cdkDropListGroup>
+<div class="container mt-3"  cdkDropListGroup>
+  <div class="d-flex mb-4">
+    <div class="col text-center">
+      <div cdkDropList
+           [id]="'deleteArea'"
+           class="delete-area"
+           (cdkDropListDropped)="deleteTask($event)">
+        <span class="text-danger">Drag here to delete</span>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex gap-2 flex-nowrap">
     <!-- Planned Column -->
     <div class="col"
          cdkDropList
