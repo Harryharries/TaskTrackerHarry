@@ -28,20 +28,26 @@
     </button>
 </div>
 
-
-<ul class="nav nav-tabs" id="taskTabs" role="tablist">
-  <li class="nav-item" role="presentation">
-    <button class="nav-link active" id="task-list-tab" data-bs-toggle="tab" data-bs-target="#taskList" type="button" role="tab" aria-controls="taskList" aria-selected="true">Task List</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="task-dashboard-tab" data-bs-toggle="tab" data-bs-target="#taskDashboard" type="button" role="tab" aria-controls="taskDashboard" aria-selected="false">Task Dashboard</button>
-  </li>
-</ul>
-<div class="tab-content" id="taskTabsContent">
-  <div class="tab-pane fade show active" id="taskList" role="tabpanel" aria-labelledby="task-list-tab">
-    <app-task-list [tasks]="tasks"></app-task-list>
+<div class="tab-conationer">
+  <div *ngIf="loading" class="loading-overlay">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
   </div>
-  <div class="tab-pane fade" id="taskDashboard" role="tabpanel" aria-labelledby="task-dashboard-tab">
-    <app-task-dashboard [tasks]="tasks"></app-task-dashboard>
+  <ul class="nav nav-tabs" id="taskTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="task-list-tab" data-bs-toggle="tab" data-bs-target="#taskList" type="button" role="tab" aria-controls="taskList" aria-selected="true">Task List</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="task-dashboard-tab" data-bs-toggle="tab" data-bs-target="#taskDashboard" type="button" role="tab" aria-controls="taskDashboard" aria-selected="false">Task Dashboard</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="taskTabsContent">
+    <div class="tab-pane fade show active" id="taskList" role="tabpanel" aria-labelledby="task-list-tab">
+      <app-task-list [tasks]="tasks"></app-task-list>
+    </div>
+    <div class="tab-pane fade" id="taskDashboard" role="tabpanel" aria-labelledby="task-dashboard-tab">
+      <app-task-dashboard [tasks]="tasks"></app-task-dashboard>
+    </div>
   </div>
 </div>

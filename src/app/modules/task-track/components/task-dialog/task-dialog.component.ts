@@ -69,7 +69,7 @@ export class TaskDialogComponent {
     this.taskForm = this.fb.group({
       name: ['', [Validators.required]],
       description: [''],
-      estimate: [0, [Validators.required]],
+      estimate: [1, [Validators.required, Validators.min(1)]],
     });
   }
 

@@ -1,5 +1,6 @@
 <app-task-page
   [tasks]="tasks$ | async"
+  [loading]="loading$ | async"
   [totalPlanned]="totalPlanned$ | async"
   [totalInProgress]="totalInProgress$ | async"
   [totalCompleted]="totalCompleted$ | async"
