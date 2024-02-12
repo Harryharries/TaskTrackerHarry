@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
@@ -8,10 +7,12 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeaderComponent]
+      declarations: [ HeaderComponent ]
     })
     .compileComponents();
-    
+  });
+
+  beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -19,5 +20,10 @@ describe('HeaderComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it(`should have as title 'Task Tracker'`, () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.navbar-brand')?.textContent).toContain('Task Tracker');
   });
 });
