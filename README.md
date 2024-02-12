@@ -1,14 +1,26 @@
 # TaskTrackerHarry
 
+deployed link:
+https://task-tracker-harry-8nec.vercel.app/
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.1.
+
+## Development Prerequisites
+
+Node.js (20.11.0 LTS)
+
+You can check your current Node.js versions with the following commands:
+`node -v`
+
+If node version can not run the project, Please get the Node.js LTS
+https://nodejs.org/en
+
+Install project dependencies:
+`npm i`
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
