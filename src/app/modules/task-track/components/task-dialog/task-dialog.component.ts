@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Task, TaskState } from 'app/shared/API-proxy/models/task';
@@ -29,7 +29,8 @@ import { CommonModule } from '@angular/common';
     MatOptionModule,
   ],
   templateUrl: './task-dialog.component.html',
-  styleUrl: './task-dialog.component.scss'
+  styleUrl: './task-dialog.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskDialogComponent {
   task$: Observable<Task> = this.store.select(TaskSelectors.selectCurrentTask).pipe(takeUntilDestroyed());

@@ -1,5 +1,5 @@
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task, TaskState } from 'app/shared/API-proxy/models/task';
 import { TaskCardComponent } from 'app/shared/components/task-card/task-card.component';
 
@@ -8,7 +8,8 @@ import { TaskCardComponent } from 'app/shared/components/task-card/task-card.com
   standalone: true,
   imports: [TaskCardComponent],
   templateUrl: './task-list.component.html',
-  styleUrl: './task-list.component.scss'
+  styleUrl: './task-list.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskListComponent {
   @Input() tasks: Task[] | null = [];

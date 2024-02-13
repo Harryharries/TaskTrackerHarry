@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task, TaskState } from 'app/shared/API-proxy/models/task';
 import { MatTooltipModule } from '@angular/material/tooltip';
 @Component({
@@ -6,7 +6,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   standalone: true,
   imports: [MatTooltipModule],
   templateUrl: './task-card.component.html',
-  styleUrl: './task-card.component.scss'
+  styleUrl: './task-card.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskCardComponent {
   @Input() task!: Task;
