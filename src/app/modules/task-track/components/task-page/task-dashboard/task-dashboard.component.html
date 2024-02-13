@@ -11,13 +11,15 @@
   </div>
   <div class="d-flex gap-2 flex-nowrap">
     <!-- Planned Column -->
-    <div class="col"
-      cdkDropList
-      [id]="'plannedTasks'"
-      [cdkDropListData]="getTasksByState(TaskState.Planned)"
-      (cdkDropListDropped)="drop($event)">
+    <div class="col">
       <div class="text-muted h6 ">Planned</div>
-      <div class="border border-muted p-3 jira-task-container rounded">
+      <div
+        [id]="'plannedTasks'"
+        cdkDropList
+        [cdkDropListData]="getTasksByState(TaskState.Planned)"
+        (cdkDropListDropped)="drop($event)"
+        class="border border-muted p-3 jira-task-container rounded"
+      >
         @for (task of getTasksByState(TaskState.Planned); track task) {
           <div cdkDrag class="bg-light text-muted mb-3 p-2 border border-2 border-secondary rounded">
             <app-task-card [dashboard]="true" [task]="task"></app-task-card>
@@ -27,13 +29,15 @@
     </div>
 
     <!-- In Progress Column -->
-    <div class="col"
-      cdkDropList
-      [id]="'inProgressTasks'"
-      [cdkDropListData]="getTasksByState(TaskState.InProgress)"
-      (cdkDropListDropped)="drop($event)">
+    <div class="col">
       <div class="text-info h6">In Progress</div>
-      <div class="border border-info p-3 jira-task-container rounded">
+      <div
+        [id]="'inProgressTasks'"
+        cdkDropList
+        [cdkDropListData]="getTasksByState(TaskState.InProgress)"
+        (cdkDropListDropped)="drop($event)"
+        class="border border-info p-3 jira-task-container rounded"
+      >
         @for (task of getTasksByState(TaskState.InProgress); track task) {
           <div cdkDrag class="bg-light text-info mb-3 p-2 border border-2 border-info rounded">
             <app-task-card [dashboard]="true" [task]="task"></app-task-card>
@@ -43,13 +47,15 @@
     </div>
 
     <!-- Completed Column -->
-    <div class="col"
-      cdkDropList
-      [id]="'completedTasks'"
-      [cdkDropListData]="getTasksByState(TaskState.Completed)"
-      (cdkDropListDropped)="drop($event)">
+    <div class="col">
       <div class="text-success h6">Completed</div>
-      <div class="border border-success p-3 jira-task-container rounded">
+      <div
+        cdkDropList
+        [id]="'completedTasks'"
+        [cdkDropListData]="getTasksByState(TaskState.Completed)"
+        (cdkDropListDropped)="drop($event)"
+        class="border border-success p-3 jira-task-container rounded"
+      >
         @for (task of getTasksByState(TaskState.Completed); track task) {
           <div cdkDrag class="bg-light text-success mb-3 p-2 border border-2 border-success rounded">
             <app-task-card [dashboard]="true" [task]="task"></app-task-card>
