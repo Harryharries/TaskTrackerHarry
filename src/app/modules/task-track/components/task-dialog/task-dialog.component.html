@@ -33,11 +33,13 @@
   <div class="d-flex justify-content-between py-1">
     <button type="button" class="btn btn-light" (click)="close()">Cancel</button>
     <button type="button" class="btn btn-primary create-button" [disabled]="!taskForm.valid || (loading$ | async)" (click)="create()">
-      <ng-container *ngIf="loading$ | async; else createLabel">
+      @if (loading$ | async) {
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         <span class="visually-hidden">Loading...</span>
-      </ng-container>
-      <ng-template #createLabel>Create</ng-template>
+      }
+      @else {
+        Create
+      }
     </button>
   </div>
 </div>

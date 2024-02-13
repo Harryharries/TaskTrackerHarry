@@ -1,5 +1,4 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task, TaskState } from 'app/shared/API-proxy/models/task';
 import { TaskCardComponent } from 'app/shared/components/task-card/task-card.component';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
@@ -7,9 +6,10 @@ import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-task-dashboard',
   standalone: true,
-  imports: [CommonModule, TaskCardComponent,DragDropModule],
+  imports: [TaskCardComponent, DragDropModule],
   templateUrl: './task-dashboard.component.html',
-  styleUrl: './task-dashboard.component.scss'
+  styleUrl: './task-dashboard.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskDashboardComponent {
   @Input() tasks: Task[] | null = [];

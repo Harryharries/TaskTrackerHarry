@@ -1,39 +1,39 @@
 <div class="container mt-4">
   <div class="d-flex gap-2 mb-3">
     <button type="button"
-            class="btn fw-medium py-1 px-3 rounded-pill text-nowrap"
-            [class.btn-primary]="currentFilter === 'All'"
-            [class.btn-outline-primary]="currentFilter !== 'All'"
-            (click)="setFilter('All')">All Tasks</button>
+      class="btn fw-medium py-1 px-3 rounded-pill text-nowrap"
+      [class.btn-primary]="currentFilter === 'All'"
+      [class.btn-outline-primary]="currentFilter !== 'All'"
+      (click)="setFilter('All')">All Tasks</button>
     <button type="button"
-            class="btn fw-medium py-1 px-3 rounded-pill text-nowrap"
-            [class.btn-secondary]="currentFilter === TaskState.Planned"
-            [class.btn-outline-secondary]="currentFilter !== TaskState.Planned"
-            (click)="setFilter(TaskState.Planned)">Planned</button>
+      class="btn fw-medium py-1 px-3 rounded-pill text-nowrap"
+      [class.btn-secondary]="currentFilter === TaskState.Planned"
+      [class.btn-outline-secondary]="currentFilter !== TaskState.Planned"
+      (click)="setFilter(TaskState.Planned)">Planned</button>
     <button type="button"
-            class="btn fw-medium py-1 px-2 rounded-pill text-nowrap"
-            [class.btn-info]="currentFilter === TaskState.InProgress"
-            [class.text-white]="currentFilter === TaskState.InProgress"
-            [class.btn-outline-info]="currentFilter !== TaskState.InProgress"
-            (click)="setFilter(TaskState.InProgress)">In Progress</button>
+      class="btn fw-medium py-1 px-2 rounded-pill text-nowrap"
+      [class.btn-info]="currentFilter === TaskState.InProgress"
+      [class.text-white]="currentFilter === TaskState.InProgress"
+      [class.btn-outline-info]="currentFilter !== TaskState.InProgress"
+    (click)="setFilter(TaskState.InProgress)">In Progress</button>
     <button type="button"
-            class="btn fw-medium py-1 px-2 rounded-pill text-nowrap"
-            [class.btn-success]="currentFilter === TaskState.Completed"
-            [class.btn-outline-success]="currentFilter !== TaskState.Completed"
-            (click)="setFilter(TaskState.Completed)">Completed</button>
+      class="btn fw-medium py-1 px-2 rounded-pill text-nowrap"
+      [class.btn-success]="currentFilter === TaskState.Completed"
+      [class.btn-outline-success]="currentFilter !== TaskState.Completed"
+      (click)="setFilter(TaskState.Completed)">Completed</button>
   </div>
 
   @if (tasks?.length === 0) {
     <span>There is no task yet XD</span>
   }
   <div class="mt-3 bg-white shadow">
-    <ng-container *ngFor="let task of filterTasks(tasks); trackBy: trackByTask">
+    @for (task of filterTasks(tasks); track task) {
       <app-task-card
         (stateUpdate)="emitStateUpdate.emit($event)"
         (deleteTask)="emitDelete.emit($event)"
         [task]="task"
-      >
+        >
       </app-task-card>
-    </ng-container>
+    }
   </div>
 </div>
