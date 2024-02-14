@@ -24,5 +24,6 @@ export class TaskPageComponent {
 
   createNewTask(): void {
     this.openCreateDialog.emit()
+
   }
 }
